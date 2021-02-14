@@ -41,6 +41,8 @@ async function run(): Promise<void> {
     ${core.getInput('end_message')}
     `
 
+    console.log(tweet_body)
+
     client.post('statuses/update', {status: tweet_body}, error => {
       if (!error) {
         console.log('Succeeded!')
