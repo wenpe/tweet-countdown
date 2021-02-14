@@ -15,10 +15,9 @@ jobs:
           npm install
       - run: |
           npm run all
-  test: # make sure the action works on a clean machine without building
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - uses: ./
         with:
-          milliseconds: 1000
+          consumer_key: ${{ secrets.TWITTER_API_KEY }}
+          consumer_secret: ${{ secrets.TWITTER_API_SECRET_KEY }}
+          access_token_key: ${{ secrets.TWITTER_ACCESS_TOKEN }}
+          access_token_secret: ${{ secrets.TWITTER_ACCESS_TOKEN_SECRET }}
+          tweet_body: 'github actions テスト！'

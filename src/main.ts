@@ -1,16 +1,26 @@
 import * as core from '@actions/core'
-import {wait} from './wait'
+import Twitter from 'twitter'
 
 async function run(): Promise<void> {
   try {
-    const ms: string = core.getInput('milliseconds')
-    core.debug(`Waiting ${ms} milliseconds ...`) // debug is only output if you set the secret `ACTIONS_RUNNER_DEBUG` to true
+    const client = new Twitter({
+      consumer_key: core.getInput('consumer_key'),
+      consumer_secret: core.getInput('consumer_secret'),
+      access_token_key: core.getInput('access_token_key'),
+      access_token_secret: core.getInput('access_token_secret')
+    })
 
-    core.debug(new Date().toTimeString())
-    await wait(parseInt(ms, 10))
-    core.debug(new Date().toTimeString())
-
-    core.setOutput('time', new Date().toTimeString())
+    client.post(
+      'statuses/update',
+      {status: core.getInput('tweet_body')},
+      error => {
+        if (!error) {
+          console.log('Succeeded!')
+        } else {
+          console.log('Couldnt tweet.')
+        }
+      }
+    )
   } catch (error) {
     core.setFailed(error.message)
   }
