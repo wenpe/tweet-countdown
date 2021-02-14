@@ -1,5 +1,5 @@
-name: 'build-test'
-on: # rebuild any PRs and main branch changes
+name: 'tweet-coutdown'
+on:
   pull_request:
   push:
     branches:
@@ -7,7 +7,7 @@ on: # rebuild any PRs and main branch changes
       - 'releases/*'
 
 jobs:
-  build: # make sure build/ci work properly
+  build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -21,4 +21,7 @@ jobs:
           consumer_secret: ${{ secrets.TWITTER_API_SECRET_KEY }}
           access_token_key: ${{ secrets.TWITTER_ACCESS_TOKEN }}
           access_token_secret: ${{ secrets.TWITTER_ACCESS_TOKEN_SECRET }}
-          tweet_body: 'github actions テスト！'
+          start_message: |
+            TOEI(2021/02/28)まであと‼
+          target_date: 2021/02/28
+          end_message: 毎日コツコツがんばろう👍
