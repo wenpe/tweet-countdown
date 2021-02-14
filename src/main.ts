@@ -1,22 +1,6 @@
 import * as core from '@actions/core'
 import Twitter from 'twitter'
 
-const getJstDate = (dateString = '') => {
-  const jstOffset = 9 * 60
-
-  if (dateString !== '') {
-    const date = new Date(dateString)
-    date.setTime(date.getTime() + jstOffset * 60 * 1000)
-
-    return date
-  } else {
-    const date = new Date()
-    date.setTime(date.getTime() + jstOffset * 60 * 1000)
-
-    return date
-  }
-}
-
 async function run(): Promise<void> {
   try {
     const client = new Twitter({
@@ -25,6 +9,22 @@ async function run(): Promise<void> {
       access_token_key: core.getInput('access_token_key'),
       access_token_secret: core.getInput('access_token_secret')
     })
+
+    const getJstDate = (dateString = '') => {
+      const jstOffset = 9 * 60
+
+      if (dateString !== '') {
+        const date = new Date(dateString)
+        date.setTime(date.getTime() + jstOffset * 60 * 1000)
+
+        return date
+      } else {
+        const date = new Date()
+        date.setTime(date.getTime() + jstOffset * 60 * 1000)
+
+        return date
+      }
+    }
 
     const now: Date = getJstDate()
     const targetDate: Date = getJstDate(core.getInput('target_date'))
