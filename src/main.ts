@@ -15,7 +15,7 @@ async function run(): Promise<void> {
       {status: core.getInput('tweet_body')},
       error => {
         if (!error) {
-          console.log('Succeeded!')
+          console.log('Succeed!')
         } else {
           console.log('Couldnt tweet.')
         }
