@@ -19,6 +19,7 @@ async function run(): Promise<void> {
         } else {
           console.log('Couldnt tweet.')
           console.log(error)
+          console.log('test')
         }
       }
     )
