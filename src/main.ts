@@ -18,6 +18,7 @@ async function run(): Promise<void> {
           console.log('Succeed!')
         } else {
           console.log('Couldnt tweet.')
+          console.log(error)
         }
       }
     )
