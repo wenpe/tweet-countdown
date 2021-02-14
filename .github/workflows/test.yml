@@ -15,6 +15,7 @@ jobs:
           npm install
       - run: |
           npm run all
+      - uses: ./
         with:
           consumer_key: ${{ secrets.TWITTER_API_KEY }}
           consumer_secret: ${{ secrets.TWITTER_API_SECRET_KEY }}
