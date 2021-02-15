@@ -42,5 +42,5 @@ const now = getJstDate()
 const targetDate = getJstDate('2021/02/28')
 const diffTime = targetDate.getTime() - now.getTime()
 var diffDay = Math.floor(diffTime / (1000 * 60 * 60 * 24) + 1)
-
+console.log(diffDay)
 run(diffDay.toString())
