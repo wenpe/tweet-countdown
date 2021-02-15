@@ -35,7 +35,7 @@ const diffDay = Math.floor(diffTime / (1000 * 60 * 60 * 24) + 1)
 
 const message = `${first_message}
 
-のこり ${diffDay.toString()} 日❗️❗️
+のこり ${diffDay.toString()} 日!!
 
 ${last_message}`
 

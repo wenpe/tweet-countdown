@@ -17,8 +17,8 @@ jobs:
           access_token_key: ${{ secrets.TWITTER_ACCESS_TOKEN }}
           access_token_secret: ${{ secrets.TWITTER_ACCESS_TOKEN_SECRET }}
           first_message: |
-            【🕑カウントダウン】
-            TOEIC試験📝 2021/02/28 まで
+            🕑 カウントダウン
+            📝 TOEIC試験 2021/02/28 まで
           target_date: '2021/02/28'
           last_message: |
             あと少し頑張りましょう🙋🏻🙋🏻‍♀️
