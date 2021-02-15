@@ -1,10 +1,7 @@
 name: 'tweet-coutdown'
 on:
-  pull_request:
-  push:
-    branches:
-      - main
-      - 'releases/*'
+  schedule:
+    - cron: '30 22 * * *'
 
 jobs:
   build:
@@ -12,17 +9,20 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - run: |
-          npm install
-      - run: |
-          npm run build
-      - run: |
-          npm run package
+          npm install && npm run build && npm run package
       - uses: ./
         with:
           consumer_key: ${{ secrets.TWITTER_API_KEY }}
           consumer_secret: ${{ secrets.TWITTER_API_SECRET_KEY }}
           access_token_key: ${{ secrets.TWITTER_ACCESS_TOKEN }}
           access_token_secret: ${{ secrets.TWITTER_ACCESS_TOKEN_SECRET }}
-          first_message: 'TOEICまであと...'
+          first_message: |
+            【🕑カウントダウン】
+            TOEIC試験📝 2021/02/28 まで
           target_date: '2021/02/28'
-          last_message: '頑張りましょー'
+          last_message: |
+            あと少し頑張りましょう🙋🏻🙋🏻‍♀️
+            ※毎日 7:30 に更新(Github Actionsより)
+            #TOEIC
+            #カウントダウン
+            #勉強

@@ -1,6 +1,6 @@
-name: 'Your name here'
-description: 'Provide a description here'
-author: 'Your name or organization here'
+name: 'wkamuy'
+description: 'tweet countdown'
+author: 'wkamuy'
 runs:
   using: 'node12'
   main: 'dist/index.js'
