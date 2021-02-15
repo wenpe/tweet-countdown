@@ -8,10 +8,6 @@ const client = new Twitter({
   access_token_secret: core.getInput('access_token_secret')
 })
 
-const first_message = core.getInput('first_message')
-const target_date = core.getInput('target_date')
-const last_message = core.getInput('last_message')
-
 const getJstDate = (target_date = '') => {
   const jstOffset = 9 * 60
 
@@ -27,6 +23,10 @@ const getJstDate = (target_date = '') => {
     return date
   }
 }
+
+const first_message = core.getInput('first_message')
+const target_date = core.getInput('target_date')
+const last_message = core.getInput('last_message')
 
 const now = getJstDate()
 const targetDate = getJstDate(target_date)
