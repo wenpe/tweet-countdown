@@ -1,12 +1,7 @@
 name: 'tweet-coutdown'
 on:
-  pull_request:
-  push:
-    branches:
-      - main
-      - 'releases/*'
-  # schedule:
-  #   - cron: '30 22 * * *'
+  schedule:
+    - cron: '30 22 * * *'
 
 jobs:
   build:
