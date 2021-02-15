@@ -8,10 +8,10 @@ const client = new Twitter({
   access_token_secret: core.getInput('access_token_secret')
 })
 
-const getJstDate = (target_date = '') => {
+const getJstDate = (target_date?: string) => {
   const jstOffset = 9 * 60
 
-  if (target_date !== '') {
+  if (target_date) {
     const date = new Date(target_date)
     date.setTime(date.getTime() + jstOffset * 60 * 1000)
 
