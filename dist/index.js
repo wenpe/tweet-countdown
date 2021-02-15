@@ -41,30 +41,28 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 const core = __importStar(__webpack_require__(2186));
 const twitter_1 = __importDefault(__webpack_require__(4532));
-function run() {
+const client = new twitter_1.default({
+    consumer_key: core.getInput('consumer_key'),
+    consumer_secret: core.getInput('consumer_secret'),
+    access_token_key: core.getInput('access_token_key'),
+    access_token_secret: core.getInput('access_token_secret')
+});
+const daysToDeletion = 25 - new Date().getDate();
+const message = `👋 Hey there folks!.
+This is an automated message 🤖 to remind you that this account has been renamed to @_skippednote and will be deactivated in the next ${daysToDeletion} days.
+I've moved to @skippednote, you can come follow me there ♥️`;
+(function main() {
     return __awaiter(this, void 0, void 0, function* () {
         try {
-            const client = new twitter_1.default({
-                consumer_key: core.getInput('consumer_key'),
-                consumer_secret: core.getInput('consumer_secret'),
-                access_token_key: core.getInput('access_token_key'),
-                access_token_secret: core.getInput('access_token_secret')
-            });
-            client.post('statuses/update', { status: core.getInput('tweet_body') }, error => {
-                if (!error) {
-                    console.log('Succeeded!');
-                }
-                else {
-                    console.log('Couldnt tweet.');
-                }
-            });
+            yield client.post('statuses/update', { status: message });
+            console.log('Successfully posted the tweet!');
         }
-        catch (error) {
-            core.setFailed(error.message);
+        catch (e) {
+            console.log('Failed to post the tweet!');
+            console.log(e.message);
         }
     });
-}
-run();
+})();
 
 
 /***/ }),
