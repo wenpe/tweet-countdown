@@ -23,4 +23,6 @@ jobs:
           consumer_secret: ${{ secrets.TWITTER_API_SECRET_KEY }}
           access_token_key: ${{ secrets.TWITTER_ACCESS_TOKEN }}
           access_token_secret: ${{ secrets.TWITTER_ACCESS_TOKEN_SECRET }}
-          tweet_body: 'おはよう'
+          first_message: 'TOEICまであと...'
+          target_date: '2021/02/28'
+          last_message: '頑張りましょー'

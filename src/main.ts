@@ -8,13 +8,38 @@ const client = new Twitter({
   access_token_secret: core.getInput('access_token_secret')
 })
 
-const daysToDeletion = 25 - new Date().getDate()
+const first_message = core.getInput('first_message')
+const target_date = core.getInput('target_date')
+const last_message = core.getInput('last_message')
 
-const message = `👋 Hey there folks!.
-This is an automated message 🤖 to remind you that this account has been renamed to @_skippednote and will be deactivated in the next ${daysToDeletion} days.
-I've moved to @skippednote, you can come follow me there ♥️`
+const getJstDate = (target_date = '') => {
+  const jstOffset = 9 * 60
 
-;(async function main() {
+  if (target_date !== '') {
+    const date = new Date(target_date)
+    date.setTime(date.getTime() + jstOffset * 60 * 1000)
+
+    return date
+  } else {
+    const date = new Date()
+    date.setTime(date.getTime() + jstOffset * 60 * 1000)
+
+    return date
+  }
+}
+
+const now = getJstDate()
+const targetDate = getJstDate(target_date)
+const diffTime = targetDate.getTime() - now.getTime()
+const diffDay = Math.floor(diffTime / (1000 * 60 * 60 * 24) + 1)
+
+const message = `${first_message}
+
+${diffDay.toString()}日！！
+
+${last_message}`
+
+const main = async (client: Twitter, message: string) => {
   try {
     await client.post('statuses/update', {status: message})
     console.log('Successfully posted the tweet!')
@@ -22,4 +47,6 @@ I've moved to @skippednote, you can come follow me there ♥️`
     console.log('Failed to post the tweet!')
     console.log(e.message)
   }
-})()
+}
+
+main(client, message)
