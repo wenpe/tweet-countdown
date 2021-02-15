@@ -10,8 +10,8 @@ async function run(message: string): Promise<void> {
       access_token_secret: core.getInput('access_token_secret')
     })
 
-    console.log('test')
-    console.log(message)
+    core.debug('test')
+    core.debug(message)
 
     client.post('statuses/update', {status: message}, error => {
       if (!error) {
