@@ -29,14 +29,9 @@ const target_date = core.getInput('target_date')
 const last_message = core.getInput('last_message')
 
 const now = getJstDate()
-const targetDate = getJstDate(target_date)
+const targetDate = new Date(target_date)
 const diffTime = targetDate.getTime() - now.getTime()
 const diffDay = Math.floor(diffTime / (1000 * 60 * 60 * 24) + 1)
-
-console.log(now)
-console.log(targetDate)
-console.log(diffTime)
-console.log(diffDay)
 
 const message = `${first_message}
 
@@ -44,14 +39,14 @@ const message = `${first_message}
 
 ${last_message}`
 
-// const main = async (client: Twitter, message: string) => {
-//   try {
-//     await client.post('statuses/update', {status: message})
-//     console.log('Successfully posted the tweet!')
-//   } catch (e) {
-//     console.log('Failed to post the tweet!')
-//     console.log(e.message)
-//   }
-// }
+const main = async (client: Twitter, message: string) => {
+  try {
+    await client.post('statuses/update', {status: message})
+    console.log('Successfully posted the tweet!')
+  } catch (e) {
+    console.log('Failed to post the tweet!')
+    console.log(e.message)
+  }
+}
 
-// main(client, message)
+main(client, message)
