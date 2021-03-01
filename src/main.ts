@@ -33,9 +33,16 @@ const targetDate = new Date(target_date)
 const diffTime = targetDate.getTime() - now.getTime()
 const diffDay = Math.floor(diffTime / (1000 * 60 * 60 * 24) + 1)
 
+let count = ''
+if (Math.sign(diffDay) == 0) {
+  count = '当'
+} else if (Math.sign(diffDay) == 1) {
+  count = diffDay.toString()
+}
+
 const message = `${first_message}
 
-のこり ${diffDay.toString()} 日!!
+のこり ${count} 日!!
 
 ${last_message}`
 
@@ -49,4 +56,4 @@ const main = async (client: Twitter, message: string) => {
   }
 }
 
-main(client, message)
+Math.sign(diffDay) == -1 ? console.log('done') : main(client, message)
