@@ -1,14 +1,3 @@
-# tweet-countdown
-
-tweet-coutdown is a Javascript Action that tweets the number of days left until the target date :bird: .
-
-![tweet_image](images/tweet_image.png)
-
-## Usage
-
-Edig `.github/workflows/main.yml` to your liking. For example as below.
-
-```.github/workflows/main.yml
 name: 'tweet-coutdown'
 on:
   schedule:
@@ -37,12 +26,3 @@ jobs:
             #TOEIC
             #カウントダウン
             #勉強
-```
-
-Result
-
-![tweet_image](images/tweet_image.png)
-
-## License
-
-[MIT](https://choosealicense.com/licenses/mit/)
