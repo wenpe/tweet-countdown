@@ -8,7 +8,7 @@ const client = new Twitter({
   access_token_secret: core.getInput('access_token_secret')
 })
 
-const getJstDate = (target_date?: string) => {
+const getJstDate = (target_date?: string): Date => {
   const jstOffset = 9 * 60
 
   if (target_date) {
@@ -34,9 +34,9 @@ const diffTime = targetDate.getTime() - now.getTime()
 const diffDay = Math.floor(diffTime / (1000 * 60 * 60 * 24) + 1)
 
 let count = ''
-if (Math.sign(diffDay) == 0) {
+if (Math.sign(diffDay) === 0) {
   count = '当'
-} else if (Math.sign(diffDay) == 1) {
+} else if (Math.sign(diffDay) === 1) {
   count = diffDay.toString()
 }
 
@@ -46,14 +46,20 @@ const message = `${first_message}
 
 ${last_message}`
 
-const main = async (client: Twitter, message: string) => {
+// eslint-disable-next-line @typescript-eslint/explicit-function-return-type
+const main = async (twitter_client: Twitter, tweet_message: string) => {
   try {
-    await client.post('statuses/update', {status: message})
+    await twitter_client.post('statuses/update', {status: tweet_message})
+
+    // eslint-disable-next-line no-console
     console.log('Successfully posted the tweet!')
   } catch (e) {
+    // eslint-disable-next-line no-console
     console.log('Failed to post the tweet!')
+    // eslint-disable-next-line no-console
     console.log(e.message)
   }
 }
 
-Math.sign(diffDay) == -1 ? console.log('done') : main(client, message)
+// eslint-disable-next-line no-console
+Math.sign(diffDay) === -1 ? console.log('done') : main(client, message)
